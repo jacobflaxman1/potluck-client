@@ -1,0 +1,11 @@
+
+
+.Header__not-logged-in {
+    padding: 10px;
+    border: 1px solid gray;
+    text-align: end;
+}
+
+h1 {
+    text-align: center;
+}

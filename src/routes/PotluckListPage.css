@@ -1,0 +1,19 @@
+.post-potluck-link {
+    margin: 10px;
+    border: 1px solid gray;
+    width: 10%;
+    padding: 10px;
+}
+
+.PotluckListPage {
+    display: flex;
+    justify-content: center;
+}
+
+
+.items-div {
+    border: 1px solid gray;
+    margin: 10px;
+    text-align: center;
+}
+

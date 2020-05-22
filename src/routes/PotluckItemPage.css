@@ -1,0 +1,20 @@
+ul {
+
+    list-style-type: none;
+    padding: 10px;
+}
+
+button {
+    margin: 10px;
+}
+
+.potluck-items {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.potluck-expanded-name {
+    font-weight: 600;
+    font-size: 36px;
+}
