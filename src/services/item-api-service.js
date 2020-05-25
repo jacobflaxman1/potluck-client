@@ -21,12 +21,11 @@ const itemApiService = {
             'authorization': `bearer ${TokenService.getAuthToken()}`
             }
         }
-        // if(typeof item_name !== 'undefined') {
-        //     fetchData.body = JSON.stringify({ item_name })
-        // }
-        console.log(item_id, 'fetch Data')
         return fetch(`${config.API_ENDPOINT}/items/${item_id}`, fetchData)
             .then(res => res.json())
+    },
+    getTakenBy(user_id) {
+        return fetch(`${config.API_ENDPOINT}/`)
     }
 }
 

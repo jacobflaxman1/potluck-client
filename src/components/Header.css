@@ -1,5 +1,4 @@
 
-
 .Header__not-logged-in {
     padding: 10px;
     border: 1px solid gray;
@@ -8,4 +7,11 @@
 
 h1 {
     text-align: center;
+}
+
+.link-home {
+    font-size: 36px;
+    font-family: 'Muli';
+    color: #EDF5E1;
+    padding: 30px;
 }

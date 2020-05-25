@@ -1,17 +1,17 @@
 import React, { useContext } from 'react'
 import PotluckContext from '../context/PotluckContext'
-export default function ItemInPotluck({ items }) {
+export default function ItemInPotluck(props) {
 
     const context = useContext(PotluckContext)
-
-    let eachItem = items.map(element =>  {
-        console.log(element)
+    //UPDATE TAKEN BY WITH USER WHO TOOK THE ITEM
+    //BACKEND SHOULD SEND BACK ITEM AND USERNAME OF WHO TOOK THE ITEM
+    let eachItem = props.items.map(element =>  {
         if(element.item_name === '') {
             return null
         }
         if(!element.taken) {
             return (
-                <ul>
+                <ul className = 'list-ul'>
                     <li key = {element.item_id}> {element.item_name}
                         <button onClick = {() => context.updateItem(element.item_id)}> Take Item </button> 
                     </li>
@@ -22,7 +22,7 @@ export default function ItemInPotluck({ items }) {
             return(
                 <ul>
                     <li key = {element.item_id} > {element.item_name}
-                        <button onClick = {() => context.updateItem(element.item_id)}> Un-Take Item </button>
+                        <button disabled> Taken By:  </button>
                     </li>
                 </ul>
             )

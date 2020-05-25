@@ -1,15 +1,20 @@
 .potluck-container {
-    background: rgba(32, 86, 148, .4);
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    border: 0;
-    font-size: smaller;
-    text-decoration: none;
-    box-shadow: 0px 11px 21px -8px rgba(0, 0, 0, 0.5);
-    margin-bottom: 40px;
-    margin-right: 20px;
-    border-radius: 10px;
-    width: 25%;
-    padding: 10px;
+    display: block;
+    padding:0.35em 1.2em;
+    border:0.1em solid rgb(118, 201, 97);
+    margin:0 0.3em 0.3em 0;
+    border-radius:0.12em;
+    box-sizing: border-box;
+    text-decoration:none;
+    font-family:'Muli',sans-serif;
+    font-weight: 400;
+    color:#FFFFFF;
+    text-align:center;
+    transition: all 0.2s;
+    padding: 20px;
+}
+
+.potluck-container:hover {
+    color:#000000;
+    background-color: grey;
 }

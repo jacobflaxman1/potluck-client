@@ -8,6 +8,8 @@ const PotluckContext = React.createContext({
     error:null,
     authToken: null,
     users: [],
+    adminUser: [],
+    usersInPotluck: [],
     setEror: () => {},
     setPotluck: () => {},
     setItems: () => {},
@@ -17,7 +19,9 @@ const PotluckContext = React.createContext({
     clearAuthToken: () => {},
     addPostedPotluck: () => {},
     updateItem: () => {},
-    getAllUserNames: () => {}
+    getAllUserNames: () => {},
+    getGuestUsersInPotluck: () => {},
+    getAdminUserInPotluck: () => {}
 })
 
 export default PotluckContext
@@ -27,6 +31,8 @@ export class PotluckProvider extends Component {
         potluck: [],
         items: [],
         users: [],
+        adminUser: [],
+        usersInPotluck:[],
         error: null,
         authToken: null
     }
@@ -72,7 +78,6 @@ export class PotluckProvider extends Component {
                     }
                     return item
                 })
-                console.log('new item data',this.state.items)
         this.setState({items: newItemData})
         })
     }
@@ -81,16 +86,41 @@ export class PotluckProvider extends Component {
         UserApiService.getUsers()
             .then((data) => {
                 console.log(data)
-                this.setState({ users: data })
+                let userNames = data.rows.map(user => {
+                    return user
+                })
+                this.setState({ users: userNames})
+            })
+    }
+    getGuestUsersInPotluck = (id) => {
+        UserApiService.getUsersByPotluck(id)
+            .then((data) => {
+                console.log('usernamews:',data)
+                let userNames = data.guests.map(user => {
+                    return user
+                })
+                this.setState({ usersInPotluck: userNames})
+        })
+    }
+    getAdminUserInPotluck = (id) => {
+        UserApiService.getUsersByPotluck(id) 
+            .then((data) => {
+                let adminUser = data.admin.map(ad => {
+                    return ad
+                })
+                this.setState({ adminUser: adminUser})
             })
     }
 
     render() {
+        console.log(this.state.adminUser, 'users in state')
         const value = {
             potluck: this.state.potluck,
             items: this.state.items,
             taken: false,
-            users: [],
+            users: this.state.users,
+            usersInPotluck: this.state.usersInPotluck,
+            adminUser: this.state.adminUser,
             error: this.state.error,
             authToken: this.state.authToken,
             setItems: this.setItems,
@@ -101,7 +131,9 @@ export class PotluckProvider extends Component {
             clearAuthToken: this.clearAuthToken,
             addPostedPotluck: this.addPostedPotluck,
             updateItem: this.updateItem,
-            getAllUserNames: this.getAllUserNames
+            getAllUserNames: this.getAllUserNames,
+            getGuestUsersInPotluck: this.getGuestUsersInPotluck,
+            getAdminUserInPotluck: this.getAdminUserInPotluck
         }
         return(
             <PotluckContext.Provider value = {value}>

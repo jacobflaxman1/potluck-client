@@ -1,20 +1,71 @@
-ul {
+.potluck-items {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: center;
+    border-top: 5px solid #379683;
+    border-width: 50%;
+    margin: 50px;
+}
+.potluck-div {
+    margin-top: 50px;
+    align-self: center;
+    color: #05386B;
+}
 
+ul {
     list-style-type: none;
     padding: 10px;
 }
 
-button {
-    margin: 10px;
+.items-div {
+    border-top: 3px solid #379683;
+    font-family: 'Muli', 'sans-serif';
+    font-size: medium;
+    align-self: center;
+}
+.created-by {
+    color: #EDF5E1;
 }
 
-.potluck-items {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.users-div {
+    align-self: center;
 }
+
+button {
+    padding:0.35em 1.2em;
+    border:0.1em solid #FFFFFF;
+    margin:10px;
+    border-radius:0.12em;
+    box-sizing: border-box;
+    text-decoration:none;
+    font-family:'Roboto',sans-serif;
+    font-weight:300;
+    color:rgb(81, 141, 90);
+    text-align:center;
+    transition: all 0.2s;
+}
+
 
 .potluck-expanded-name {
     font-weight: 600;
-    font-size: 36px;
+    font-size: 24px;
+}
+
+.delete {
+    padding:0.35em 1.2em;
+    border:0.1em solid #FFFFFF;
+    margin:0 0.3em 0.3em 0;
+    border-radius:0.12em;
+    box-sizing: border-box;
+    text-decoration:none;
+    font-family:'Roboto',sans-serif;
+    font-weight:300;
+    color:rgb(218, 154, 154);
+    text-align:center;
+    transition: all 0.2s;    
+}
+.delete:hover {
+    color:#000000;
+    background-color: #ce4848;
 }

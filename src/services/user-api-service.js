@@ -11,6 +11,16 @@ const UserApiService = {
 
         })
         .then(res => res.json())
+    },
+    getUsersByPotluck(id) {
+        return fetch(`${config.API_ENDPOINT}/users/names/${id}`, {
+            method: 'GET',
+            headers: {
+                'authorization': `bearer ${TokenService.getAuthToken()}`,
+            },
+
+        })
+        .then(res => res.json())
     }
 }
 
