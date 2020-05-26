@@ -21,7 +21,15 @@ const PotluckContext = React.createContext({
     updateItem: () => {},
     getAllUserNames: () => {},
     getGuestUsersInPotluck: () => {},
-    getAdminUserInPotluck: () => {}
+    getAdminUserInPotluck: () => {},
+    // LIST CONTEXT
+    potluckList: [],
+    user: '',
+    setPotluckList: () => {},
+    setUser: () => {},
+    setShowForm: () => {},
+    showForm: false,
+    setExpanded: () => {}
 })
 
 export default PotluckContext
@@ -34,8 +42,17 @@ export class PotluckProvider extends Component {
         adminUser: [],
         usersInPotluck:[],
         error: null,
-        authToken: null
+        authToken: null,
+        showForm: false,
+        //LIST STATE
+        potluckList: [],
+        user: '',
     }
+
+    setShowForm = () => {
+        this.setState({ showForm: !this.state.showForm })
+    }
+
 
     setError = error => {
         console.error(error)
@@ -49,6 +66,7 @@ export class PotluckProvider extends Component {
     setPotluck = (potluck) => {
         this.setState({ potluck })
     }
+
     setItems = (items) => {
         this.setState({ items })
     }
@@ -66,26 +84,26 @@ export class PotluckProvider extends Component {
     }
 
     addPostedPotluck = (newPotluck) => {
-        this.setState({ potluck: [...this.state.potluck, newPotluck] })
+        this.setState({ potluckList: [...this.state.potluckList, {...newPotluck, expanded: true}] })
     }
     
     updateItem = (id) => {
         itemApiService.updateItem(id)
             .then((data) => {
+                console.log('returned data',data)
                 const newItemData = this.state.items.map((item) => {
                     if(id === item.item_id) {
                         return data
                     }
                     return item
                 })
-        this.setState({items: newItemData})
+                this.setState({items: newItemData})
         })
     }
 
     getAllUserNames = () => {
         UserApiService.getUsers()
             .then((data) => {
-                console.log(data)
                 let userNames = data.rows.map(user => {
                     return user
                 })
@@ -93,9 +111,9 @@ export class PotluckProvider extends Component {
             })
     }
     getGuestUsersInPotluck = (id) => {
+        console.log(id)
         UserApiService.getUsersByPotluck(id)
             .then((data) => {
-                console.log('usernamews:',data)
                 let userNames = data.guests.map(user => {
                     return user
                 })
@@ -111,18 +129,40 @@ export class PotluckProvider extends Component {
                 this.setState({ adminUser: adminUser})
             })
     }
+    //LIST FUNCTIONS
+    setPotluckList = potluckList => {
+        const expandedPotluckList = potluckList.map(data => {
+            return {...data, expanded: false}
+        })
+
+        this.setState({ potluckList: expandedPotluckList })
+      }
+
+    setUser = (user) => {
+        this.setState({ user })
+      }
+
+
+    setExpanded = (id) => {
+        console.log(id)
+        const index = this.state.potluckList.findIndex(el => el.potluck_id === id)
+        let newPotluckState = [...this.state.potluckList]
+        newPotluckState[index] = {...newPotluckState[index], expanded: !newPotluckState[index].expanded}
+        this.setState({ potluckList: newPotluckState })
+    }
 
     render() {
-        console.log(this.state.adminUser, 'users in state')
+        // console.log('potluck context', this.state.potluckList)
         const value = {
             potluck: this.state.potluck,
             items: this.state.items,
-            taken: false,
             users: this.state.users,
             usersInPotluck: this.state.usersInPotluck,
             adminUser: this.state.adminUser,
             error: this.state.error,
             authToken: this.state.authToken,
+            potluckList: this.state.potluckList,
+            user: this.state.user,
             setItems: this.setItems,
             setError: this.setError,
             setPotluck: this.setPotluck,
@@ -133,7 +173,14 @@ export class PotluckProvider extends Component {
             updateItem: this.updateItem,
             getAllUserNames: this.getAllUserNames,
             getGuestUsersInPotluck: this.getGuestUsersInPotluck,
-            getAdminUserInPotluck: this.getAdminUserInPotluck
+            getAdminUserInPotluck: this.getAdminUserInPotluck,
+            setPotluckList: this.setPotluckList,
+            setUser: this.setUser,
+            clearError: this.clearError,
+            showForm: this.state.showForm,
+            setShowForm: this.setShowForm,
+            setExpanded: this.setExpanded
+
         }
         return(
             <PotluckContext.Provider value = {value}>

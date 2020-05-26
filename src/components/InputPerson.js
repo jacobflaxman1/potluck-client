@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-
+import './PostPotluckForm.css'
 export default class InputPerson extends Component {
 
     state = {
@@ -10,21 +10,20 @@ export default class InputPerson extends Component {
 
     render() {
         return(
-        <div>
-            <input
+        <div key = {this.props.i}>
+            <input className = 'field'
               type="text"
               value={this.props.people}
               onChange={e => this.props.handleChangePeople(e, this.props.i)}
-              onKeyDown={this.props.onKeyDown}
             />
             {this.props.suggestionsListComponent}
             &nbsp;&nbsp;
-            <input
+            <input className = 'remove-input'
               type="button"
               value="remove"
               onClick={() => this.props.removeClickPeople(this.props.i)}
             />
-            <input type="button" value="add more" onClick={() => this.props.addClickPeople()} />
+            <input className = 'add-input' type="button" value="add more" onClick={() => this.props.addClickPeople()} />
         </div>
         )
     }

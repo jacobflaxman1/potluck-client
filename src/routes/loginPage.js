@@ -1,16 +1,18 @@
 import React, { Component } from 'react'
 import LoginForm from '../components/LoginForm'
-
+import './LoginPage.css'
 export default class LoginPage extends Component {
 
     render() {
         return(
-            <div className = 'login-page'>
+            <>
                 <h2>Login</h2>
-                <LoginForm 
-                    {...this.props}
-                />
-            </div>
+                <div className = 'login-page'>
+                    <LoginForm 
+                        {...this.props}
+                    />
+                </div>
+            </>
         )
     }
 }

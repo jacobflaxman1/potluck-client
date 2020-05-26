@@ -5,15 +5,14 @@ import PublicOnlyRoute from './Utilites/PublicOnlyRoute'
 import LoginPage from './routes/loginPage'
 import RegistrationPage from './routes/RegistrationPage'
 import PotluckListPage from './routes/PotluckListPage'
-import PotluckItemPage from './routes/PotluckItemPage'
 import { Switch } from 'react-router-dom'
 import Header from './components/Header'
-import PostPotluckPage from './routes/PostPotluckPage';
 
 class App extends React.Component {
 
-//TOO: need to remigrate the database with ON DELETE CASCADE in the users link table 
-
+//FIGURE OUT WHY EXPANDING THE COMPONENT HAS BUGGY FUNCTIONALITY 
+//DELETE BUTTON RERENDER COMPONENT 
+//AUTOSUGGESTION IS BUGGY
 
   render() {
     return (
@@ -25,8 +24,6 @@ class App extends React.Component {
           <PublicOnlyRoute path = {'/login'} component = {LoginPage}/>
           <PublicOnlyRoute path = {'/register'} component = {RegistrationPage}/>
           <PrivateRoute exact path = {'/'} component = {PotluckListPage}/>
-          <PrivateRoute path = {'/potluck/:potluck_id'} component = {PotluckItemPage} />
-          <PrivateRoute exact path = {'/potlucks/post'} component = {PostPotluckPage} />
         </Switch>
       </div>
     );

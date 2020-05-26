@@ -10,7 +10,7 @@ export default class PostPotluckForm extends Component {
     state = { 
         error: null,
         values: [""],
-        people: [""]
+        people: [""],
     }
 
     handleSubmit = e => {
@@ -26,8 +26,9 @@ export default class PostPotluckForm extends Component {
             this.setState({ values: ['']})
             this.setState({ people: ['']})
             this.context.addPostedPotluck(potluck)
-            this.props.history.push('/')
+            this.context.setShowForm()
         })
+        
         .catch(res => {
             this.setState({ error: res.error})
         })
@@ -65,7 +66,6 @@ export default class PostPotluckForm extends Component {
         console.log('array of users',arrayOfUsers)
         const filteredSuggestions = arrayOfUsers.filter(
             suggestion => {
-                console.log(suggestion)
                 return suggestion[0].toLowerCase().indexOf(val.toLowerCase()) > -1 }
         )
         this.setState({
@@ -87,40 +87,15 @@ export default class PostPotluckForm extends Component {
         this.setState({ people });
       };
 
-      //user friendly suggestions :)
-      onKeyDown = e => {
-          const { activeSuggestion, filteredSuggestions } = this.state
-
-        //user pressed enter
-          if(e.keyCode === 13) {
-            this.setState({
-                activeSuggestion: 0,
-                showSuggestions: false,
-                people: filteredSuggestions[activeSuggestion]
-            })
-          }
-          //Up arrow key
-          else if(e.keyCode === 38) {
-              if(activeSuggestion === 0) {
-                  return;
-              }
-              this.setState({ activeSuggestion: activeSuggestion -1 })
-          }
-          //down arrow key
-          else if(e.keyCode === 40) {
-              if(activeSuggestion -1 === filteredSuggestions.length) {
-                  return;
-              }
-              this.setState({ activeSuggestion: activeSuggestion + 1 })
-          }
-      };
-
       onClickSuggestion = (e) => {
+        const { activeSuggestion, filteredSuggestions } = this.state
+        let people = this.state.people
+        people.push(filteredSuggestions[activeSuggestion])
           this.setState({
               activeSuggestion: 0,
               filteredSuggestions: [],
               showSuggestions: false,
-              people: [...this.state.people, e.currentTarget.innerText]
+              people
           })
       }
       
@@ -136,11 +111,9 @@ export default class PostPotluckForm extends Component {
               <ul className="suggestions">
                 {filteredSuggestions.map((suggestion, index) => {
                   let className;
-    
                   if (index === activeSuggestion) {
                     className = "suggestion-active";
                   }
-    
                   return (
                     <li className={className} key={suggestion} onClick={onClickSuggestion}>
                       {suggestion}
@@ -162,36 +135,36 @@ export default class PostPotluckForm extends Component {
           <form className="submit-potluck-form" onSubmit={this.handleSubmit}>
             <div> {error && <p>{error} </p>} </div>
             <label htmlFor="potluck-name"> Name Your Potluck:</label>
-            <input name="potluck_name" required />
+            <input name="potluck_name" required className = 'field'/>
             <br />
             <label htmlFor="potluck-items"> Add Items to Your Potluck: </label>
             {this.state.values.map((el, i) => (
               <div key={i}>
-                <input
+                <input className = 'field'
                   type="text"
                   value={this.state.values[i]}
                   onChange={e => this.handleChange(e, i)}
                 />{" "}
                 &nbsp;&nbsp;
-                <input
+                <input className = 'remove-input'
                   type="button"
                   value="remove"
                   onClick={() => this.removeClick(i)}
                 />
               </div>
             ))}
-            <input type="button" value="add more" onClick={() => this.addClick()} />
+            <input className = 'add-input' type="button" value="add more" onClick={() => this.addClick()} />
             <br />
             <label htmlFor="potluck-people"> Add People to Your Potluck: </label>
             {this.state.people.map((el, i) => (
                 <InputPerson
                     key = {i}
+                    i = {i}
                     el = {el}
                     addClickPeople = {this.addClickPeople}
                     handleChangePeople  = {this.handleChangePeople}
                     people = {this.state.people[i]}
                     removeClickPeople = {this.removeClickPeople}
-                    onKeyDown = {this.onKeyDown}
                     suggestionsListComponent = {suggestionsListComponent}
                 /> 
             ))}

@@ -1,28 +1,30 @@
 import React, { useContext } from 'react'
 import PotluckContext from '../context/PotluckContext'
+import './ItemInPotluck.css'
 export default function ItemInPotluck(props) {
 
     const context = useContext(PotluckContext)
-    //UPDATE TAKEN BY WITH USER WHO TOOK THE ITEM
-    //BACKEND SHOULD SEND BACK ITEM AND USERNAME OF WHO TOOK THE ITEM
-    let eachItem = props.items.map(element =>  {
+    
+    let eachItem = props.items.map((element, index) =>  {
         if(element.item_name === '') {
             return null
         }
         if(!element.taken) {
             return (
                 <ul className = 'list-ul'>
-                    <li key = {element.item_id}> {element.item_name}
+                    <li key = {index}> 
                         <button onClick = {() => context.updateItem(element.item_id)}> Take Item </button> 
+                        {element.item_name}
                     </li>
                 </ul>
             ) 
         } 
         else {
             return(
-                <ul>
-                    <li key = {element.item_id} > {element.item_name}
-                        <button disabled> Taken By:  </button>
+                <ul className = 'list-ul'>
+                    <li key = {index}>
+                        <div className = 'taken-item'> {element.user_name} is taking </div>
+                        {element.item_name}
                     </li>
                 </ul>
             )

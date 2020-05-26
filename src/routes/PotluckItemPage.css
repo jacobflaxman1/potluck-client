@@ -1,3 +1,8 @@
+@keyframes expand {
+    from {margin-left: -500px;}
+    to {margin: 0px;}
+}
+
 .potluck-items {
     display: flex;
     justify-content: flex-start;
@@ -5,25 +10,29 @@
     align-items: center;
     border-top: 5px solid #379683;
     border-width: 50%;
-    margin: 50px;
+
+    /* animation-name: expand;
+    animation-duration: 1s;
+    animation-timing-function: ease-in; */
 }
 .potluck-div {
-    margin-top: 50px;
+    margin-top: 35px;
     align-self: center;
     color: #05386B;
 }
 
 ul {
     list-style-type: none;
-    padding: 10px;
 }
 
 .items-div {
     border-top: 3px solid #379683;
     font-family: 'Muli', 'sans-serif';
     font-size: medium;
-    align-self: center;
+    color: #05386B;
+
 }
+
 .created-by {
     color: #EDF5E1;
 }

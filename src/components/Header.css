@@ -1,8 +1,8 @@
 
 .Header__not-logged-in {
     padding: 10px;
-    border: 1px solid gray;
     text-align: end;
+    font-size: 1.25rem;
 }
 
 h1 {
@@ -14,4 +14,44 @@ h1 {
     font-family: 'Muli';
     color: #EDF5E1;
     padding: 30px;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.Header__logged-in {
+    /* border: 3px solid #EDF5E1; */
+    color: #EDF5E1;
+    margin: 10px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+
+.Header__not-logged-in {
+    color: #EDF5E1
+}
+
+.LoginForm {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+}
+
+input {
+    margin: 5px;;
+    width: 100%;
+    max-width: 280px;
+    border-radius: 3px;
+    overflow: hidden;
+
+}
+
+label {
+    font-size: 16px;
+    font-weight: 500;
 }

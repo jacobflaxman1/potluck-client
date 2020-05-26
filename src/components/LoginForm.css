@@ -1,0 +1,28 @@
+.LoginForm {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+}
+
+.input-fields {
+    margin: 5px;;
+    width: 100%;
+    max-width: 280px;
+    border-radius: 3px;
+    overflow: hidden;
+    align-self: center;
+
+}
+
+.input-fields:focus{
+    border: none;
+}
+
+
+.login {
+    width: 100%;
+    padding: 10px;
+    align-self: flex-start   ;
+}
+

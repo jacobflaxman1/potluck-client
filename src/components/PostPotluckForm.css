@@ -1,34 +1,67 @@
-form {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    width: 25%;
+@keyframes animation {
+    from {left:  0px;}
+    to {left: 200px;}
 }
 
-body {
-    font-family: sans-serif;
-  }
-  
-input {
-    border: 1px solid #999;
+
+.field {
+    border: none;
     padding: 0.5rem;
     width: 300px;
     margin: 5px;
-  }
+    
+    display: flex; 
+    align-content: center;
+    justify-content: center;
+    flex-direction: column; 
+}
+
+.add-input {
+    display: inline-block;
+    border-radius: 10px;
+    background-color: #EDF5E1;
+
+    width: 50%;
+
+}
+
+.add-input:hover {
+    background-color: #05386B;
+}
+
+.remove-input {
+
+    border-radius: 10px;
+    background-color: #EDF5E1;
+    width: 25%;
+}
+
+.remove-input:hover {
+    background-color: rgba(200, 45, 45, .6);
+}
+
+.submit-potluck-form {
+    display: flex; 
+    align-content: center;
+    justify-content: space-between;
+    flex-direction: column; 
+    /* border: 5px solid #EDF5E1; */
+    background-color: #8EE4AF;
+    animation-name: animation;
+    animation-duration: 2s;
+    padding: 10px;
+}
+
   
 .no-suggestions {
     color: #999;
-    padding: 0.5rem;
   }
   
 .suggestions {
     border: 1px solid #999;
-    border-top-width: 0;
     list-style: none;
-    margin-top: 0;
     max-height: 143px;
     overflow-y: auto;
-    padding-left: 0;
     width: calc(300px + 1rem);
   }
   
@@ -38,7 +71,6 @@ input {
   
 .suggestion-active,
 .suggestions li:hover {
-    background-color: #008f68;
     color: #fae042;
     cursor: pointer;
     font-weight: 700;
@@ -47,7 +79,10 @@ input {
 .suggestions li:not(:last-of-type) {
     border-bottom: 1px solid #999;
   }
+
+  .potluck-items {
+      display: flex;
+      justify-content: space-between;
+
+  }
   
-label {
-    margin: 10px;
-}

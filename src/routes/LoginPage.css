@@ -1,0 +1,12 @@
+.login-page {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+}
+
+h2 {
+    margin-top: 50px;
+    padding: 15px;
+    text-align: center;
+}

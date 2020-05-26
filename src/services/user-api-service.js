@@ -21,6 +21,15 @@ const UserApiService = {
 
         })
         .then(res => res.json())
+    },
+    getUserNameByUserId(id) {
+        return fetch(`${config.API_ENDPOINT}/users/user/${id}`, {
+            method: 'GET',
+            headers: {
+                'authorization': `bearer ${TokenService.getAuthToken()}`
+            }
+        })
+        .then(res => res.json())
     }
 }
 

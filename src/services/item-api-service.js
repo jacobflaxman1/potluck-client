@@ -11,7 +11,6 @@ const itemApiService = {
         })
         .then(res => res.json())
     },
-
     updateItem(item_id) {
         let fetchData = {
             method: 'PATCH',
@@ -25,7 +24,7 @@ const itemApiService = {
             .then(res => res.json())
     },
     getTakenBy(user_id) {
-        return fetch(`${config.API_ENDPOINT}/`)
+        return fetch(`${config.API_ENDPOINT}/users/user/${user_id}`)
     }
 }
 

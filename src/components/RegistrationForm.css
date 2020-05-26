@@ -1,0 +1,29 @@
+.RegistrationPage {
+    text-align: center;
+}
+
+.RegistrationForm {
+    text-align: center;
+}
+.registration-input{
+    margin: 5px;;
+    width: 100%;
+    max-width: 280px;
+    border-radius: 3px;
+    overflow: hidden;
+    
+    align-self: center;
+
+}
+
+.input-fields:focus{
+    border: none;
+}
+
+label {
+
+    font-size: 16px;
+    
+    font-weight: 500;
+
+}
