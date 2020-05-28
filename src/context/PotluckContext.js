@@ -29,7 +29,10 @@ const PotluckContext = React.createContext({
     setUser: () => {},
     setShowForm: () => {},
     showForm: false,
-    setExpanded: () => {}
+    setExpanded: () => {},
+    render: false,
+    setRender: () => {},
+    clearPotluckInList: () => {}
 })
 
 export default PotluckContext
@@ -47,6 +50,11 @@ export class PotluckProvider extends Component {
         //LIST STATE
         potluckList: [],
         user: '',
+        render: false
+    }
+
+    setRender = () => {
+        this.setState({ render: !this.state.render})
     }
 
     setShowForm = () => {
@@ -75,6 +83,17 @@ export class PotluckProvider extends Component {
         this.setPotluck([])
     }
 
+    clearPotluckInList = (id) => {
+        let newList = [...this.state.potluckList]
+        let index = this.state.potluckList.findIndex(el => el.potluck_id === id)
+
+        if(index !== -1) {
+            newList.splice(index, 1)
+            this.setState({potluckList: newList})
+        }
+        
+    }
+
     saveAuthToken = (authToken) => {
         this.setState({ authToken })
     }
@@ -90,7 +109,6 @@ export class PotluckProvider extends Component {
     updateItem = (id) => {
         itemApiService.updateItem(id)
             .then((data) => {
-                console.log('returned data',data)
                 const newItemData = this.state.items.map((item) => {
                     if(id === item.item_id) {
                         return data
@@ -144,15 +162,14 @@ export class PotluckProvider extends Component {
 
 
     setExpanded = (id) => {
-        console.log(id)
         const index = this.state.potluckList.findIndex(el => el.potluck_id === id)
         let newPotluckState = [...this.state.potluckList]
+
         newPotluckState[index] = {...newPotluckState[index], expanded: !newPotluckState[index].expanded}
         this.setState({ potluckList: newPotluckState })
     }
 
     render() {
-        // console.log('potluck context', this.state.potluckList)
         const value = {
             potluck: this.state.potluck,
             items: this.state.items,
@@ -179,7 +196,10 @@ export class PotluckProvider extends Component {
             clearError: this.clearError,
             showForm: this.state.showForm,
             setShowForm: this.setShowForm,
-            setExpanded: this.setExpanded
+            setExpanded: this.setExpanded,
+            render: this.state.render,
+            setRender: this.setRender,
+            clearPotluckInList: this.clearPotluckInList
 
         }
         return(

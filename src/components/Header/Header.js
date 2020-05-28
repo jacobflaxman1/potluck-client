@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import TokenService from '../services/token-service'
-import PotluckContext from '../context/PotluckContext'
+import TokenService from '../../services/token-service'
+import PotluckContext from '../../context/PotluckContext'
 import './Header.css'
 
 export default class Header extends Component {
@@ -27,16 +27,15 @@ export default class Header extends Component {
           </div>
         )
       }
-
     renderLoginLink() {
     return (
         <div className='Header__not-logged-in'>
-        <Link
+        <Link className = 'link-register'
             style={{ textDecoration: 'none' }}
             to='/login'>
-            Log in
+            Log in  
         </Link>
-        <Link
+        <Link className = 'link-register'
             style={{ textDecoration: 'none', margin: '5px' }}
 
             to='/register'>

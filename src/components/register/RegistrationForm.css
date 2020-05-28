@@ -1,0 +1,55 @@
+.RegistrationPage {
+    text-align: center;
+}
+
+.RegistrationForm {
+    display: flex;
+    justify-content: space-evenly;
+    align-content: space-around;
+    flex-direction: column;
+    max-width: 500px;
+	padding: 10px 20px;
+	background: #f4f7f8;
+	margin: 10px auto;
+	padding: 20px;
+	background: #f4f7f8;
+	border-radius: 8px;
+	font-family: Georgia, "Times New Roman", Times, serif;
+}
+.registration-input{
+    margin: 5px;
+    width: 100%;
+    max-width: 280px;
+    border-radius: 3px;
+    overflow: hidden;
+
+}
+
+.input-fields:focus{
+    border: none;
+}
+
+
+.register-input {
+    display: inline-flex;
+    justify-content: space-evenly;
+    align-self: center;
+    flex-direction: column;
+
+    border-radius: 6px;
+    padding: 5px;
+    margin: 10px;
+}
+
+.register {
+    align-self: center;
+    border: none;
+    border-radius: 6px;
+    color: #05386B;
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.register:hover {
+    background-color: rgb(59, 108, 156);
+}

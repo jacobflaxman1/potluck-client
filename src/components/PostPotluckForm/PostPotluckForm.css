@@ -1,0 +1,110 @@
+@keyframes animation {
+    from {opacity: 0;}
+    to {opacity: 100;}
+}
+
+
+.field {
+    font-family: Georgia, "Times New Roman", Times, serif;
+	background: rgba(255,255,255,.1);
+	border: none;
+	border-radius: 4px;
+	font-size: 15px;
+	margin: 0;
+	outline: 0;
+	padding: 10px;
+	width: 100%;
+	box-sizing: border-box; 
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box; 
+	background-color: #e8eeef;
+	color:#8a97a0;
+	-webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
+	box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
+	margin-bottom: 30px;
+    display: flex; 
+    align-content: center;
+    justify-content: center;
+    flex-direction: column; 
+}
+
+.add-input {
+	background: #2471FF;
+	border: none;
+	padding: 10px 20px 10px 20px;
+	border-bottom: 3px solid #5994FF;
+	border-radius: 3px;
+	color: #D2E2FF;
+	font-size: 14px;
+
+}
+
+.add-input:hover {
+    background-color: #05386B;
+}
+
+.remove-input {
+	display: inline-block;
+	color: #FFF;
+	margin: 0 auto;
+	background: #1abc9c;
+	font-size: 14px;
+	text-align: center;
+	font-style: normal;
+	width: 75%;
+	border-width: 1px 1px 3px;
+    margin-bottom: 6px;
+    border: none;
+
+}
+
+.remove-input:hover {
+    background-color: rgba(200, 45, 45, .6);
+    border: none;
+}
+
+.submit-potluck-form {
+    display: flex; 
+    align-content: center;
+    justify-content: space-between;
+    flex-direction: column; 
+    max-width: 500px;
+	background: #f4f7f8;
+	margin: 10px auto;
+	padding: 40px 300px;
+	background: #f4f7f8;
+	border-radius: 8px;
+    font-family: Georgia, "Times New Roman", Times, serif;
+    animation-name: animation;
+    animation-duration: 1s;
+    box-shadow: 5px 5px #05386B;
+}
+
+  
+.no-suggestions {
+    color: #999;
+  }
+  
+.suggestions {
+    border: 1px solid #05386B;
+    list-style: none;
+    max-height: 143px;
+    overflow-y: auto;
+    width: calc(10rem);
+  }
+  
+  .suggestions li {
+    padding: 0.5rem;
+  }
+  
+.suggestion-active,
+.suggestions li:hover {
+    color: #05386B;
+    cursor: pointer;
+    font-weight: 700;
+  }
+  
+.suggestions li:not(:last-of-type) {
+    border-bottom: 1px solid #999;
+  }
+

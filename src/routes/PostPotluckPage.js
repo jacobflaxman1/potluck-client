@@ -1,5 +1,5 @@
 import React from 'react'
-import PostPotluckForm from '../components/PostPotluckForm'
+import PostPotluckForm from '../components/PostPotluckForm/PostPotluckForm'
 import PotluckContext from '../context/PotluckContext'
 import './PostPotluckPage.css'
 

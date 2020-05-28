@@ -1,8 +1,11 @@
-@keyframes expand {
-    from {margin-left: -500px;}
-    to {margin: 0px;}
+@keyframes animation {
+    from {opacity: 0;}
+    to {opacity: 100;}
 }
 
+.people-coming {
+    margin: 5px;
+}
 .potluck-items {
     display: flex;
     justify-content: flex-start;
@@ -11,14 +14,15 @@
     border-top: 5px solid #379683;
     border-width: 50%;
 
-    /* animation-name: expand;
+    animation-name: animation;
     animation-duration: 1s;
-    animation-timing-function: ease-in; */
+    animation-timing-function: ease-in;
 }
 .potluck-div {
     margin-top: 35px;
     align-self: center;
     color: #05386B;
+
 }
 
 ul {
@@ -35,10 +39,20 @@ ul {
 
 .created-by {
     color: #EDF5E1;
+    padding: 4px;
+    margin: 7px;
 }
 
 .users-div {
-    align-self: center;
+    border-top: 3px solid #379683;
+    font-family: 'Muli', 'sans-serif';
+    font-size: medium;
+    color: #05386B;
+    margin-bottom: 5px;
+}
+.user-list {
+    margin: 5px;
+    align-self: flex-start;
 }
 
 button {

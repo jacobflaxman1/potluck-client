@@ -1,12 +1,12 @@
 import React from 'react';
 import './App.css';
-import PrivateRoute from './Utilites/PrivateRoute';
-import PublicOnlyRoute from './Utilites/PublicOnlyRoute'
-import LoginPage from './routes/loginPage'
-import RegistrationPage from './routes/RegistrationPage'
-import PotluckListPage from './routes/PotluckListPage'
+import PrivateRoute from '../../Utilites/PrivateRoute';
+import PublicOnlyRoute from '../../Utilites/PublicOnlyRoute'
+import LoginPage from '../../routes/loginPage'
+import RegistrationPage from '../../routes/RegistrationPage'
+import PotluckListPage from '../../routes/PotluckListPage'
 import { Switch } from 'react-router-dom'
-import Header from './components/Header'
+import Header from '../Header/Header'
 
 class App extends React.Component {
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import TokenService from '../services/token-service'
-import AuthApiService from '../services/auth-api-service'
-import PotluckContext from '../context/PotluckContext'
+import TokenService from '../../services/token-service'
+import AuthApiService from '../../services/auth-api-service'
+import PotluckContext from '../../context/PotluckContext'
 import './LoginForm.css'
 export default class LoginForm extends Component {
 //   static defaultProps = {

@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import PotluckContext from '../context/PotluckContext'
+import PotluckContext from '../../context/PotluckContext'
 import './ItemInPotluck.css'
 export default function ItemInPotluck(props) {
 
@@ -11,22 +11,18 @@ export default function ItemInPotluck(props) {
         }
         if(!element.taken) {
             return (
-                <ul className = 'list-ul'>
-                    <li key = {index}> 
-                        <button onClick = {() => context.updateItem(element.item_id)}> Take Item </button> 
-                        {element.item_name}
+                    <li key = {index} className = 'not-taken'> 
+                        <button className = 'button-take' onClick = {() => context.updateItem(element.item_id)}> Take {element.item_name}
+ </button> 
                     </li>
-                </ul>
+   
             ) 
         } 
         else {
             return(
-                <ul className = 'list-ul'>
                     <li key = {index}>
-                        <div className = 'taken-item'> {element.user_name} is taking </div>
-                        {element.item_name}
+                        <div className = 'taken-item'> <span className = 'user-taking'> {element.user_name}  is bringing {element.item_name} </span></div>
                     </li>
-                </ul>
             )
         }
     })

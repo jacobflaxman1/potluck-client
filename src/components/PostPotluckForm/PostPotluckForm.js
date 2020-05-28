@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import './PostPotluckForm.css'
-import PotluckApiService from '../services/potluck-api-service'
-import PotluckContext from '../context/PotluckContext'
-import InputPerson from './InputPerson'
+import PotluckApiService from '../../services/potluck-api-service'
+import PotluckContext from '../../context/PotluckContext'
+import { ReactDOM } from 'react-dom'
 
 export default class PostPotluckForm extends Component {
     static contextType = PotluckContext
@@ -11,6 +11,11 @@ export default class PostPotluckForm extends Component {
         error: null,
         values: [""],
         people: [""],
+        activeSuggestion: 0,
+        filteredSuggestions: [],
+        showSuggestions: false,
+        indexOfInput: 0,
+        focused: false
     }
 
     handleSubmit = e => {
@@ -63,7 +68,6 @@ export default class PostPotluckForm extends Component {
         let arrayOfUsers = users.map(user => {
             return Object.values(user)
         })
-        console.log('array of users',arrayOfUsers)
         const filteredSuggestions = arrayOfUsers.filter(
             suggestion => {
                 return suggestion[0].toLowerCase().indexOf(val.toLowerCase()) > -1 }
@@ -76,10 +80,9 @@ export default class PostPotluckForm extends Component {
       };
       //ADD INPUT FIELD
       addClickPeople = () => {
-        this.setState(prevState => ({
-          people: [...prevState.people, ""]
-        }));
+        this.setState({people: [...this.state.people, ""]})
       };
+
       //DELETE INPUT FIELD
       removeClickPeople = i => {
         let people = [...this.state.people];
@@ -87,10 +90,11 @@ export default class PostPotluckForm extends Component {
         this.setState({ people });
       };
 
-      onClickSuggestion = (e) => {
-        const { activeSuggestion, filteredSuggestions } = this.state
+      onClickSuggestion = (e, i) => {
+        let { activeSuggestion, filteredSuggestions } = this.state
         let people = this.state.people
-        people.push(filteredSuggestions[activeSuggestion])
+        activeSuggestion = e.target.getAttribute("data-index")
+        people[this.state.indexOfInput] = (filteredSuggestions[activeSuggestion])
           this.setState({
               activeSuggestion: 0,
               filteredSuggestions: [],
@@ -99,38 +103,39 @@ export default class PostPotluckForm extends Component {
           })
       }
       
-
+      onFocus = (i) => {
+        this.setState({ focused: true, indexOfInput: i })
+      }
+      onBlur = (i) => {
+        this.setState({ focused: false, indexOfInput: i })
+      }
+      
       render() {
-        const { error, showSuggestions, filteredSuggestions, activeSuggestion } = this.state;
+        const { error, filteredSuggestions, activeSuggestion } = this.state;
         const { onClickSuggestion } = this
         let suggestionsListComponent;
+        let noSuggestionsList;
 
-        if (showSuggestions && this.state.people.length > 0) {
-          if (filteredSuggestions.length) {
-            suggestionsListComponent = (
-              <ul className="suggestions">
-                {filteredSuggestions.map((suggestion, index) => {
-                  let className;
-                  if (index === activeSuggestion) {
-                    className = "suggestion-active";
-                  }
-                  return (
-                    <li className={className} key={suggestion} onClick={onClickSuggestion}>
-                      {suggestion}
-                    </li>
-                  );
-                })}
-              </ul>
-            );
-          } else {
-            suggestionsListComponent = (
-              <div className="no-suggestions">
-                <em>No suggestions (Ask your friends for their User Name if you can't re)</em>
-              </div>
-            );
-          }
-        }
-
+        suggestionsListComponent = (
+          <ul className="suggestions">
+            {filteredSuggestions.map((suggestion, index) => {
+              let className;
+              if (index === activeSuggestion && this.state.focused && this.state.indexOfInput === index) {
+                className = "suggestion-active";
+              }
+              return (
+                <li data-index={index} className={className} key={suggestion} onClick={onClickSuggestion}>
+                  {suggestion}
+                </li>
+              );
+            })}
+          </ul>
+        );
+        noSuggestionsList = (
+          <ul className="suggestions">
+          </ul>
+        );
+            console.log(this.state.indexOfInput)
         return (
           <form className="submit-potluck-form" onSubmit={this.handleSubmit}>
             <div> {error && <p>{error} </p>} </div>
@@ -157,17 +162,24 @@ export default class PostPotluckForm extends Component {
             <br />
             <label htmlFor="potluck-people"> Add People to Your Potluck: </label>
             {this.state.people.map((el, i) => (
-                <InputPerson
-                    key = {i}
-                    i = {i}
-                    el = {el}
-                    addClickPeople = {this.addClickPeople}
-                    handleChangePeople  = {this.handleChangePeople}
-                    people = {this.state.people[i]}
-                    removeClickPeople = {this.removeClickPeople}
-                    suggestionsListComponent = {suggestionsListComponent}
-                /> 
+                <div>
+                    <input className = 'field'
+                        type="text"
+                        value={this.state.people[i]}
+                        onChange={e => this.handleChangePeople(e, i)}
+                        onFocus = {() => this.onFocus(i)}
+                        onBlur = {() => this.onBlur(i)}
+                    />
+                    {(this.state.indexOfInput === i) ? suggestionsListComponent : noSuggestionsList}
+                    &nbsp;&nbsp;
+                    <input className = 'remove-input'
+                        type="button"
+                        value="remove"
+                        onClick={() => this.removeClickPeople(i)}
+                    />
+                 </div>
             ))}
+           <input className = 'add-input' type="button" value="add more" onClick={() => this.addClickPeople()} />
             <br />
             <button type="submit"> Post </button>
           </form>

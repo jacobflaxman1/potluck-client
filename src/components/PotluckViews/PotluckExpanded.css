@@ -6,9 +6,6 @@
     justify-content: center;
     align-items: center;
 
-    border:0.1em solid #EDF5E1;
-    margin:0 0.3em 0.3em 0;
-    border-radius:0.12em;
     box-sizing: border-box;
     text-decoration:none;
     font-family:'Muli',sans-serif;
@@ -16,8 +13,9 @@
     color:#EDF5E1;
     text-align:center;
     transition: all 0.2s;
-    padding: 20px;
-
+    padding: 40px 10rem;
+    box-shadow: 3px 3px solid red;
+    color: red;
     background-color: #EDF5E1;
 }
 

@@ -23,7 +23,6 @@ h1 {
 }
 
 .Header__logged-in {
-    /* border: 3px solid #EDF5E1; */
     color: #EDF5E1;
     margin: 10px;
     display: flex;
@@ -32,7 +31,8 @@ h1 {
 
 
 .Header__not-logged-in {
-    color: #EDF5E1
+    color: #EDF5E1;
+    padding: 10px;
 }
 
 .LoginForm {
@@ -51,7 +51,6 @@ input {
 
 }
 
-label {
-    font-size: 16px;
-    font-weight: 500;
+.link-register {
+    padding: 10px;
 }

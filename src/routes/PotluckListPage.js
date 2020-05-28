@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import PotluckContext from '../context/PotluckContext'
 import PotluckApiService from '../services/potluck-api-service'
-import PotluckExpandedItem from '../components/PotluckExpandedItem'
-import PotluckCondensedView from '../components/PotluckCondensedView'
+import PotluckExpandedItem from '../components/PotluckViews/PotluckExpandedItem'
+import PotluckCondensedView from '../components/PotluckViews/PotluckCondensedView'
 import PostPotluckPage from './PostPotluckPage'
 import './PotluckListPage.css'
 

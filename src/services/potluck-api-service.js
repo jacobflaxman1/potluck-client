@@ -29,7 +29,6 @@ const PotluckApiService = {
         
     }, 
     getItemsInPotluck(potluck_id) {
-        console.log(potluck_id)
         return fetch(`http://localhost:8000/api/potlucks/items/${potluck_id}`, {
             headers: {
                 'authorization': `bearer ${TokenService.getAuthToken()}`

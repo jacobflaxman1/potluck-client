@@ -4,7 +4,7 @@ import { BrowserRouter } from 'react-router-dom'
 import { PotluckProvider } from './context/PotluckContext'
 import {PotluckListProvider } from './context/PotluckListContext'
 import './index.css';
-import App from './App';
+import App from './components/app/App';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(

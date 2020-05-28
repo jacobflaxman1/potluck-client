@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import PotluckContext from '../context/PotluckContext'
-import './PotluckListItem.css'
+import PotluckContext from '../../context/PotluckContext'
+import './PotluckExpanded.css'
 
 export default class PotluckListItem extends Component {
     static contextType = PotluckContext

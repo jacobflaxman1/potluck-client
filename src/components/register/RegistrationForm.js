@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import AuthApiService from '../services/auth-api-service'
+import AuthApiService from '../../services/auth-api-service'
 import './RegistrationForm.css'
 export default class RegistrationForm extends Component {
 
@@ -29,16 +29,13 @@ export default class RegistrationForm extends Component {
         return(
             <form className = 'RegistrationForm' onSubmit = {this.handleSubmit}>
                 <div> { error && <p>{error} </p> } </div>
-                <label htmlFor = 'registrationForm-userName'> User Name </label>
-                <input className = 'register-input' name = 'user_name' required type = 'text'/>
+                <input placeholder = 'UserName' className = 'register-input' name = 'user_name' required type = 'text'/>
                 
-                <label htmlFor = 'registrationForm-nickName'> Nick Name </label>
-                <input className = 'register-input' name = 'nick_name' required type = 'text'/>
+                <input placeholder = 'NickName' className = 'register-input' name = 'nick_name' required type = 'text'/>
 
-                <label htmlFor = 'registrationForm-password'> Password </label>
-                <input className = 'register-input' name = 'password' required type = 'text'/>
+                <input placeholder = 'password' className = 'register-input' name = 'password' required type = 'password'/>
 
-                <button type= 'submit'> Register </button>
+                <button type= 'submit' className = 'register'> Register </button>
             </form>
         )
     }
