@@ -10,9 +10,8 @@ import Header from '../Header/Header'
 
 class App extends React.Component {
 
-//FIGURE OUT WHY EXPANDING THE COMPONENT HAS BUGGY FUNCTIONALITY 
-//DELETE BUTTON RERENDER COMPONENT 
-//AUTOSUGGESTION IS BUGGY
+//HOW TO AUTOFOCUS FORMS
+//HOW TO GET USER FROM JWT TOKEN
 
   render() {
     return (

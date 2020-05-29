@@ -1,16 +1,7 @@
 .LoginForm {
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    flex-direction: column;
-    max-width: 500px;
-	padding: 20px 20px;
-	background: #f4f7f8;
-	margin: 10px;
-	padding: 20px;
+	padding: 40px;
 	background: #f4f7f8;
 	border-radius: 8px;
-	font-family: Georgia, "Times New Roman", Times, serif;
 }
 
 .input-fields {
@@ -20,10 +11,9 @@
     border-radius: 3px;
     overflow: hidden;
     padding: 5px;
-    display: flex;
-    justify-content: space-evenly;
-    align-content: space-around;
-    flex-direction: column;}
+    margin-right: 20px;
+
+}
 
 .input-fields:focus{
     border: none;
@@ -35,11 +25,12 @@
     border: none;
     border-radius: 6px;
     color: #05386B;
-    font-weight: 500;
+    font-weight: 550;
     font-size: 16px;
 }
 
 .login:hover {
     background-color: rgb(59, 108, 156);
+    color: #ffffff
 
 }

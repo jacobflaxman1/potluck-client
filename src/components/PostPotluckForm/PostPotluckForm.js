@@ -15,7 +15,8 @@ export default class PostPotluckForm extends Component {
         filteredSuggestions: [],
         showSuggestions: false,
         indexOfInput: 0,
-        focused: false
+        focused: false,
+        currentStep: 1
     }
 
     handleSubmit = e => {
@@ -110,6 +111,24 @@ export default class PostPotluckForm extends Component {
         this.setState({ focused: false, indexOfInput: i })
       }
       
+      nextStep = () => {
+        let currentStep = this.state.currentStep
+        // If the current step is 1 or 2, then add one on "next" button click
+        currentStep = currentStep >= 2? 3: currentStep + 1
+        this.setState({
+          currentStep: currentStep
+        })
+      }
+
+      prevStep = () => {
+        let currentStep = this.state.currentStep
+        // If the current step is 2 or 3, then subtract one on "previous" button click
+        currentStep = currentStep <= 1? 1: currentStep - 1
+        this.setState({
+          currentStep: currentStep
+        })
+      }
+
       render() {
         const { error, filteredSuggestions, activeSuggestion } = this.state;
         const { onClickSuggestion } = this
@@ -135,17 +154,20 @@ export default class PostPotluckForm extends Component {
           <ul className="suggestions">
           </ul>
         );
-            console.log(this.state.indexOfInput)
+            console.log(this.state.values, this.state.people)
         return (
           <form className="submit-potluck-form" onSubmit={this.handleSubmit}>
             <div> {error && <p>{error} </p>} </div>
-            <label htmlFor="potluck-name"> Name Your Potluck:</label>
+         {this.state.currentStep === 1 && <> <label htmlFor="potluck-name"> Name Your Potluck:</label>
             <input name="potluck_name" required className = 'field'/>
+            <button onClick = {this.nextStep}> next step </button>
+             </> }
             <br />
-            <label htmlFor="potluck-items"> Add Items to Your Potluck: </label>
+           {this.state.currentStep === 2 && <>
+            <label htmlFor="potluck-items"> Add Items to Your Potluck </label>
             {this.state.values.map((el, i) => (
-              <div key={i}>
-                <input className = 'field'
+              <div key={i} className = 'additems'>
+                <input className = 'field'  
                   type="text"
                   value={this.state.values[i]}
                   onChange={e => this.handleChange(e, i)}
@@ -153,17 +175,20 @@ export default class PostPotluckForm extends Component {
                 &nbsp;&nbsp;
                 <input className = 'remove-input'
                   type="button"
-                  value="remove"
+                  value="-"
                   onClick={() => this.removeClick(i)}
                 />
               </div>
             ))}
-            <input className = 'add-input' type="button" value="add more" onClick={() => this.addClick()} />
+            <input className = 'add-input' type="button" value="Add More Items" onClick={() => this.addClick()} />
+            <button onClick = {this.nextStep}> next step </button>
+            </>}
             <br />
-            <label htmlFor="potluck-people"> Add People to Your Potluck: </label>
+           {this.state.currentStep === 3 && <>
+            <label htmlFor="potluck-people"> Add Friends By UserName </label>
             {this.state.people.map((el, i) => (
-                <div>
-                    <input className = 'field'
+                <div className = 'addpeople' key = {i}>
+                    <input className = 'field' 
                         type="text"
                         value={this.state.people[i]}
                         onChange={e => this.handleChangePeople(e, i)}
@@ -174,14 +199,15 @@ export default class PostPotluckForm extends Component {
                     &nbsp;&nbsp;
                     <input className = 'remove-input'
                         type="button"
-                        value="remove"
+                        value="-"
                         onClick={() => this.removeClickPeople(i)}
                     />
                  </div>
             ))}
-           <input className = 'add-input' type="button" value="add more" onClick={() => this.addClickPeople()} />
+           <input className = 'add-input' type="button" value="Add Another Person" onClick={() => this.addClickPeople()} />
+            </>}
             <br />
-            <button type="submit"> Post </button>
+           <button type="submit" className = 'submit-post'> Create </button>
           </form>
         );
       }

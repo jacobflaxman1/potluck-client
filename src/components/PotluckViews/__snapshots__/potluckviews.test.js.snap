@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Adds Potluck Form to dom without crashing renders without crashing 1`] = `null`;
+
+exports[`Adds Potluck Form to dom without crashing renders without crashing 2`] = `null`;
+
+exports[`Adds Potluck Form to dom without crashing renders without crashing 3`] = `null`;
+
+exports[`Adds all of the potluck views to dom without crashing renders without crashing 1`] = `null`;
+
+exports[`Adds all of the potluck views to dom without crashing renders without crashing 2`] = `null`;
+
+exports[`Adds all of the potluck views to dom without crashing renders without crashing 3`] = `null`;

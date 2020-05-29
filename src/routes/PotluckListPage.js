@@ -38,8 +38,10 @@ export default class PotluckListPage extends Component {
 
     render() {
         const { error, showForm } = this.context
+        const { potluckList } = this.context
+        console.log(potluckList)
         return(
-            <div className = 'potlucks-container'>
+            <div className = 'potlucks-container' role = 'main'>
                 <div className = 'post-potluck-link'>
                     <div className = 'link-to-post' onClick = {this.context.setShowForm}>
                         {(!showForm) ? '+' : '-'}
@@ -49,7 +51,11 @@ export default class PotluckListPage extends Component {
                     </div>
                 </div>
                 <div className = 'PotluckListPage'>
-                    <h2> Your Potlucks </h2>
+                   {(potluckList.length > 0) 
+                     ? <h2> Your Potlucks </h2> 
+                     : (showForm) 
+                       ? <div> </div> 
+                        : <h2> Hit The Plus Symbol To Get Started</h2>}
                     {error
                         ? <p className = 'red-error'>There Was an error, try again please. </p>
                         : this.renderPotlucks()

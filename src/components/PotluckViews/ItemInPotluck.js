@@ -12,8 +12,8 @@ export default function ItemInPotluck(props) {
         if(!element.taken) {
             return (
                     <li key = {index} className = 'not-taken'> 
-                        <button className = 'button-take' onClick = {() => context.updateItem(element.item_id)}> Take {element.item_name}
- </button> 
+                        <button className = 'button-take' onClick = {() => context.updateItem(element.item_id)}> Bring {element.item_name}
+                        </button> 
                     </li>
    
             ) 

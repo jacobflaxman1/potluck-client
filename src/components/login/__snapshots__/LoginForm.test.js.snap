@@ -1,3 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Adds header to dom without crashing renders without crashing 1`] = `null`;
+
+exports[`Adds login form to dom without crashing renders without crashing 1`] = `null`;
