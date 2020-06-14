@@ -58,7 +58,8 @@ const PotluckApiService = {
                 'authorization': `bearer ${TokenService.getAuthToken()}`
             },
         })
-        .then(res => console.log(res))
+        .then(res => res)
+        .catch(err => console.log(err))
     },
 
 } 

@@ -4,20 +4,26 @@
 }
 
 label {
+    margin-top: 5px;
     margin-bottom: 8px;
-    color: #ffffff;
+    color: #8F291F;
     font-weight: 550;
-    font-size: 1rem;
+    font-size: 1.15rem;
+    text-align: center;
+}
+.formheader {
+    border-bottom: 2px solid #2471FF;
+    margin-bottom: 15px;
 }
 
 .field {
-    margin-bottom: 5vh;
     border-right: none;
     border-top: none;
     border-left: none;
     background-color:transparent;
     outline: none;
     color: #ffffff;
+    font-size: large;
     font-weight: 550;
     caret-color: white;
     padding: 5px;
@@ -37,7 +43,7 @@ label {
 	color: #2471FF;
     font-size: 14px;
     align-self: center;
-
+    margin-top: 15px;
 }
 
 .add-input:hover {
@@ -49,7 +55,7 @@ label {
 	color: #05386B;
 	background: #ffffff;
 	font-size: 14px;
-    width: 5em;
+    width: 8em;
     height: 2em;
     align-self: center;
     border-width: 1px 1px 3px;

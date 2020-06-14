@@ -26,10 +26,22 @@
     align-content: center;
     justify-content: center;
     font-size: large;
+    color: red;
+}
+
+.not-taken:hover {
+    font-weight: 550;
+    color: red;
 }
 
 .button-take {
     padding: 6px 20px;
     font-size: large;
+}
 
+span {
+    font-weight: 800;
+    color: #347250;
+    /* border-bottom: 1px solid #5CDB95; */
+    padding: 5px;
 }

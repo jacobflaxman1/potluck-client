@@ -1,22 +1,16 @@
 .LoginForm {
-	padding: 40px;
-	background: #f4f7f8;
-	border-radius: 8px;
+    text-align: center;
+    
 }
 
 .input-fields {
     margin: 5px;
-    width: 100%;
     max-width: 280px;
-    border-radius: 3px;
+    border-radius: 6px;
     overflow: hidden;
     padding: 5px;
     margin-right: 20px;
 
-}
-
-.input-fields:focus{
-    border: none;
 }
 
 
@@ -32,5 +26,6 @@
 .login:hover {
     background-color: rgb(59, 108, 156);
     color: #ffffff
-
 }
+
+

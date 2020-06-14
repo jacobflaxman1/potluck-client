@@ -21,7 +21,7 @@ export default function ItemInPotluck(props) {
         else {
             return(
                     <li key = {index}>
-                        <div className = 'taken-item'> <span className = 'user-taking'> {element.user_name}  is bringing {element.item_name} </span></div>
+                        <div className = 'taken-item'> <span className = 'user-taking'> {element.user_name} </span> is bringing {element.item_name} </div>
                     </li>
             )
         }

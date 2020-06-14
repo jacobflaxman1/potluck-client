@@ -5,7 +5,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
+    
     box-sizing: border-box;
     text-decoration:none;
     font-family:'Muli',sans-serif;
@@ -13,10 +13,11 @@
     color:#EDF5E1;
     text-align:center;
     transition: all 0.2s;
-    padding: 40px 10rem;
+    padding: 20px 5rem;
     box-shadow: 3px 3px solid red;
     color: red;
     background-color: #EDF5E1;
+
 }
 
 .potluck-container:focus {

@@ -14,7 +14,6 @@ export default class PotluckItemPage extends Component {
 
     componentDidMount() {
         const potluck_id = this.props.potluck_id
-        console.log('potluck_id',potluck_id)
         PotluckApiService.getItemsInPotluck(potluck_id)
             .then(this.context.setItems)
             .catch(this.context.setError)
@@ -24,13 +23,8 @@ export default class PotluckItemPage extends Component {
         this.context.getGuestUsersInPotluck(potluck_id)
         this.context.getAdminUserInPotluck(potluck_id)
     }
-//Only admin user can delete a potluck  
     deletePotluck = () => {
         const potluck_id = this.props.potluck_id
-        const adminUser = this.context.potluck.adminUser4
-        //How to get currently logged in useraname
-        //do not render the delete button if admin user === currently logged in user 
-        // if(adminUser === )
             PotluckApiService.deletePotluck(potluck_id)
                 .then(this.context.clearPotluck)
                 .catch(this.context.setError)
@@ -39,9 +33,7 @@ export default class PotluckItemPage extends Component {
     }
 
     renderPotluck() {
-    
         const { potluck, adminUser } = this.context
-        console.log(potluck, adminUser)
         return (
             <PotluckExpandedContent potluck = {potluck} adminUser = {adminUser}/>
         )
@@ -60,15 +52,23 @@ export default class PotluckItemPage extends Component {
     }
     renderGuestUsersPotluck() {
         const { usersInPotluck } = this.context
-        return (
+        console.log(usersInPotluck)
+        if(usersInPotluck.length === 0) {
+            console.log('test', usersInPotluck)
+            return <div></div>
+        }
+        else {
+            console.log('test1', usersInPotluck)
+            return (
             <GuestUsersInPotluck 
                 users = {usersInPotluck}
             />
         )
+        }
     }
     render() {
         return(
-            <div className = 'potluck-items'>
+            <div className = 'potluck-items'> 
                 <div className = 'potluck-div'>
                      {this.renderPotluck()}
                 </div>
@@ -77,6 +77,7 @@ export default class PotluckItemPage extends Component {
                 </div>
                 <div className = 'items-div'>
                  <h2>What They're Bringing</h2>
+                 <p className = 'hint'>(Click on an item to take it)</p>
                     {this.renderItemsInPotluck()}
                 </div>
                 <button className = 'delete' onClick = {this.deletePotluck}> Delete </button>
@@ -103,6 +104,9 @@ function GuestUsersInPotluck({ users }) {
 let guestUsers = users.map((user ,index) => {
     return <li className = 'user-list' key = {index}> {user.user_name} </li>
     })
+    if(!guestUsers) {
+        return <div></div>
+    }
     return (
         <div>
             <h2 className = 'people-coming'> Whose Coming </h2>

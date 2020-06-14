@@ -21,7 +21,6 @@ export default class PotluckListPage extends Component {
     renderPotlucks() {
         const { potluckList } = this.context
         return potluckList.map(potluck => {
-            console.log(potluck.expanded)
             if(potluck.expanded) {
                 return <PotluckExpandedItem
                     key = {'expanded' + potluck.potluck_id}
@@ -39,7 +38,6 @@ export default class PotluckListPage extends Component {
     render() {
         const { error, showForm } = this.context
         const { potluckList } = this.context
-        console.log(potluckList)
         return(
             <div className = 'potlucks-container' role = 'main'>
                 <div className = 'post-potluck-link'>
@@ -52,7 +50,7 @@ export default class PotluckListPage extends Component {
                 </div>
                 <div className = 'PotluckListPage'>
                    {(potluckList.length > 0) 
-                     ? <h2> Your Potlucks </h2> 
+                     ? <h2> </h2> 
                      : (showForm) 
                        ? <div> </div> 
                         : <h2> Hit The Plus Symbol To Get Started</h2>}

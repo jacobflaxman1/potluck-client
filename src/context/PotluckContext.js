@@ -32,7 +32,9 @@ const PotluckContext = React.createContext({
     setExpanded: () => {},
     render: false,
     setRender: () => {},
-    clearPotluckInList: () => {}
+    clearPotluckInList: () => {},
+    //Friend Context
+    addFriend: () => {}
 })
 
 export default PotluckContext
@@ -129,7 +131,6 @@ export class PotluckProvider extends Component {
             })
     }
     getGuestUsersInPotluck = (id) => {
-        console.log(id)
         UserApiService.getUsersByPotluck(id)
             .then((data) => {
                 let userNames = data.guests.map(user => {
@@ -169,6 +170,17 @@ export class PotluckProvider extends Component {
         this.setState({ potluckList: newPotluckState })
     }
 
+    scrollIntoView = () => {
+        this.scrollIntoView({ behavior: 'smooth' })
+    }
+
+    //FRIENDS
+
+    addFriend = (user_id_one, user_id_two) => {
+        UserApiService.postFriend(user_id_one, user_id_two)
+            .then(res => console.log(res))
+    }
+
     render() {
         const value = {
             potluck: this.state.potluck,
@@ -199,7 +211,8 @@ export class PotluckProvider extends Component {
             setExpanded: this.setExpanded,
             render: this.state.render,
             setRender: this.setRender,
-            clearPotluckInList: this.clearPotluckInList
+            clearPotluckInList: this.clearPotluckInList,
+            addFriend: this.addFriend
 
         }
         return(

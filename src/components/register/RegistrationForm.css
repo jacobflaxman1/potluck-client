@@ -25,11 +25,6 @@
 
 }
 
-.input-fields:focus{
-    border: none;
-}
-
-
 .register-input {
     display: inline-flex;
     justify-content: space-evenly;

@@ -2,13 +2,13 @@ import React, { Component } from 'react'
 import './PostPotluckForm.css'
 import PotluckApiService from '../../services/potluck-api-service'
 import PotluckContext from '../../context/PotluckContext'
-import { ReactDOM } from 'react-dom'
 
 export default class PostPotluckForm extends Component {
     static contextType = PotluckContext
 
     state = { 
         error: null,
+        name: '',
         values: [""],
         people: [""],
         activeSuggestion: 0,
@@ -21,14 +21,13 @@ export default class PostPotluckForm extends Component {
 
     handleSubmit = e => {
         e.preventDefault()
-        const { potluck_name } = e.target
         PotluckApiService.postPotluck({
-            potluck_name: potluck_name.value,
+            potluck_name: this.state.name,
             potluck_items: this.state.values,
             potluck_people: this.state.people
         })
         .then(potluck => {
-            potluck_name.value = ''
+            this.setState({ name: '' })
             this.setState({ values: ['']})
             this.setState({ people: ['']})
             this.context.addPostedPotluck(potluck)
@@ -38,6 +37,10 @@ export default class PostPotluckForm extends Component {
         .catch(res => {
             this.setState({ error: res.error})
         })
+    }
+
+    handleChangeName = (e) => {
+      this.setState({ name: e.target.value })
     }
     //FOR VALUES IN STATE
     handleChange = (event, i) => {
@@ -154,20 +157,20 @@ export default class PostPotluckForm extends Component {
           <ul className="suggestions">
           </ul>
         );
-            console.log(this.state.values, this.state.people)
         return (
           <form className="submit-potluck-form" onSubmit={this.handleSubmit}>
+            <h2 className = 'formheader'> Create Your Potluck </h2>
             <div> {error && <p>{error} </p>} </div>
-         {this.state.currentStep === 1 && <> <label htmlFor="potluck-name"> Name Your Potluck:</label>
-            <input name="potluck_name" required className = 'field'/>
-            <button onClick = {this.nextStep}> next step </button>
+         {this.state.currentStep === 1 && <> <label htmlFor="potluck-name"> Name Your Potluck</label>
+            <input autoFocus onChange = {this.handleChangeName} name="potluck_name" required className = 'field'/>
+            <button onClick = {this.nextStep}> Next Step </button>
              </> }
             <br />
            {this.state.currentStep === 2 && <>
             <label htmlFor="potluck-items"> Add Items to Your Potluck </label>
             {this.state.values.map((el, i) => (
               <div key={i} className = 'additems'>
-                <input className = 'field'  
+                <input className = 'field' autoFocus 
                   type="text"
                   value={this.state.values[i]}
                   onChange={e => this.handleChange(e, i)}
@@ -175,13 +178,14 @@ export default class PostPotluckForm extends Component {
                 &nbsp;&nbsp;
                 <input className = 'remove-input'
                   type="button"
-                  value="-"
+                  value="Remove Item"
                   onClick={() => this.removeClick(i)}
                 />
               </div>
             ))}
             <input className = 'add-input' type="button" value="Add More Items" onClick={() => this.addClick()} />
-            <button onClick = {this.nextStep}> next step </button>
+            <button onClick = {this.nextStep}> Next step </button>
+            <button onClick = {this.prevStep}> Go Back </button>
             </>}
             <br />
            {this.state.currentStep === 3 && <>
@@ -189,7 +193,7 @@ export default class PostPotluckForm extends Component {
             {this.state.people.map((el, i) => (
                 <div className = 'addpeople' key = {i}>
                     <input className = 'field' 
-                        type="text"
+                        type="text" autoFocus
                         value={this.state.people[i]}
                         onChange={e => this.handleChangePeople(e, i)}
                         onFocus = {() => this.onFocus(i)}
@@ -199,15 +203,16 @@ export default class PostPotluckForm extends Component {
                     &nbsp;&nbsp;
                     <input className = 'remove-input'
                         type="button"
-                        value="-"
+                        value="Remove Person"
                         onClick={() => this.removeClickPeople(i)}
                     />
                  </div>
             ))}
            <input className = 'add-input' type="button" value="Add Another Person" onClick={() => this.addClickPeople()} />
+           <button onClick = {this.prevStep}> Go Back </button>
             </>}
             <br />
-           <button type="submit" className = 'submit-post'> Create </button>
+           {this.state.currentStep === 3 && <button type="submit" className = 'submit-post'> Create </button>}
           </form>
         );
       }

@@ -7,7 +7,7 @@ import RegistrationPage from '../../routes/RegistrationPage'
 import PotluckListPage from '../../routes/PotluckListPage'
 import { Switch } from 'react-router-dom'
 import Header from '../Header/Header'
-
+import FriendsList from '../Friends/FriendsList'
 class App extends React.Component {
 
 //HOW TO AUTOFOCUS FORMS
@@ -19,6 +19,7 @@ class App extends React.Component {
         <header>
           <Header />
         </header>
+        {/* <FriendsList />  */}
         <Switch>
           <PublicOnlyRoute path = {'/login'} component = {LoginPage}/>
           <PublicOnlyRoute path = {'/register'} component = {RegistrationPage}/>
