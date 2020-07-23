@@ -4,7 +4,7 @@ Potluck
 
 ## Links
 live site: https://y-puce.now.sh/
-backend: https://limitless-citadel-27748.herokuapp.com
+backend: https://lit-citadel-36573.herokuapp.com
 
 ## Using The API
 
